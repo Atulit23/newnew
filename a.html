@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Product Search</title>
+</head>
+<body>
+    <h1>Amazon Product Search</h1>
+    <form>
+        <input type="text" id="search-input" placeholder="Search for products">
+        <div id="search-btn">Search</div>
+    </form>
+    <div id="search-results"></div>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const searchResults = document.getElementById('search-results');
+
+        searchBtn.addEventListener('click', async (e) => {
+            // e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                const response = await fetch('http://127.0.0.1:5000/compare_descriptions?product=' + query);
+                const results = await response.json();
+                searchResults.innerHTML = '';
+                results.forEach((product) => {
+                    const productHTML = `
+                        <h2>${product.title}</h2>
+                        <p>Rating: ${product.review}</p>
+                        <p>Price: ${product.price}</p>
+                    `;
+                    searchResults.innerHTML += productHTML;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

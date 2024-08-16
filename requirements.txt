@@ -1,0 +1,11 @@
+Flask
+selenium
+gradio
+chromedriver-autoinstaller
+gradio_client
+uvicorn
+gunicorn
+chromedriver-py
+webdriver-manager
+webdriver_manager
+chromedriver_binary
